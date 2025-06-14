@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect, useCallback } from "react";
+import Image from "next/image";
 import {
   Play,
   Pause,
@@ -48,31 +49,46 @@ export default function FullScreenMusicPlayer() {
   const [repeatMode, setRepeatMode] = useState(0);
   const audioRef = useRef<HTMLAudioElement>(null);
 
+  // Load new song when currentSong changes
   useEffect(() => {
     if (audioRef.current) {
       audioRef.current.src = songs[currentSong].src;
       audioRef.current.load();
-      if (isPlaying) audioRef.current.play();
+      if (isPlaying) {
+        audioRef.current.play();
+      }
     }
   }, [currentSong]);
 
-  const togglePlay = () => {
+  // Play or pause audio on isPlaying change
+  useEffect(() => {
     if (audioRef.current) {
-      isPlaying ? audioRef.current.pause() : audioRef.current.play();
-      setIsPlaying(!isPlaying);
+      isPlaying ? audioRef.current.play() : audioRef.current.pause();
     }
-  };
+  }, [isPlaying]);
 
-  const nextSong = () => {
-    setCurrentSong((currentSong + 1) % songs.length);
+  // Toggle play/pause
+  const togglePlay = useCallback(() => {
+    if (audioRef.current) {
+      setIsPlaying((prev) => !prev);
+    }
+  }, []);
+
+  // Next song
+  const nextSong = useCallback(() => {
+    setCurrentSong((prev) =>
+      isShuffled ? Math.floor(Math.random() * songs.length) : (prev + 1) % songs.length
+    );
     setIsPlaying(true);
-  };
+  }, [isShuffled]);
 
-  const prevSong = () => {
-    setCurrentSong((currentSong - 1 + songs.length) % songs.length);
+  // Previous song
+  const prevSong = useCallback(() => {
+    setCurrentSong((prev) => (prev - 1 + songs.length) % songs.length);
     setIsPlaying(true);
-  };
+  }, []);
 
+  // Format time
   const formatTime = (seconds: number) => {
     if (isNaN(seconds) || seconds < 0) return "0:00";
     const mins = Math.floor(seconds / 60);
@@ -111,10 +127,12 @@ export default function FullScreenMusicPlayer() {
 
         {/* Song Info */}
         <div className="flex flex-col items-center">
-          <img
+          <Image
             src={songs[currentSong].albumArt}
             alt="Album Art"
-            className="w-32 h-32 sm:w-40 sm:h-40 rounded-lg shadow-md"
+            width={160}
+            height={160}
+            className="rounded-lg shadow-md"
           />
           <div className="text-center mt-4">
             <h2 className="text-xl sm:text-2xl font-bold">{songs[currentSong].title}</h2>
@@ -199,7 +217,13 @@ export default function FullScreenMusicPlayer() {
             setDuration(audioRef.current.duration);
           }
         }}
-        onEnded={() => (repeatMode === 2 ? audioRef.current!.play() : nextSong())}
+        onEnded={() => {
+          if (repeatMode === 2) {
+            audioRef.current?.play();
+          } else {
+            nextSong();
+          }
+        }}
       />
     </div>
   );
