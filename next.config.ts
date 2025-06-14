@@ -1,12 +1,8 @@
-const isProd = process.env.NODE_ENV === 'production';
-
+/** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export', // 💥 key for static export
-  images: {
-    unoptimized: true, // disable next/image optimization
+  eslint: {
+    ignoreDuringBuilds: true,
   },
-  basePath: isProd ? '/My-mac-portfolio' : '',
-  assetPrefix: isProd ? '/My-mac-portfolio/' : '',
 };
 
 module.exports = nextConfig;

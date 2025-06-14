@@ -1,12 +1,12 @@
 {
-  "homepage": "https://github.com/ARYAN-ark-1/My-mac-portfolio.git",
   "name": "macos-portfolio",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build && next export",
-    "deploy": "npm run build && gh-pages -d out"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "lucide-react": "^0.515.0",
@@ -23,7 +23,6 @@
     "autoprefixer": "^10.4.21",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
-    "gh-pages": "^6.3.0",
     "postcss": "^8.5.5",
     "tailwindcss": "^3.4.17",
     "typescript": "^5"
