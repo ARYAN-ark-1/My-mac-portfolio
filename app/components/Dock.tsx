@@ -1,5 +1,5 @@
 import { ReactNode, useState } from 'react';
-import { Terminal, Mail, Music, Globe, User, File, Briefcase } from 'lucide-react';
+import { Mail, Music, Globe, User, File, Briefcase } from 'lucide-react';
 
 interface DockItemProps {
   label: string;

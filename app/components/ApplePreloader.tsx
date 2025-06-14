@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 const OSBootPreloader = () => {
   const [progress, setProgress] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [, setLoading] = useState(true);
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {

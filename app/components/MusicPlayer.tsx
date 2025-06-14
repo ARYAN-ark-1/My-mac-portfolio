@@ -34,7 +34,7 @@ const songs: Song[] = [
 export default function MusicPlayer() {
   const [isPlaying, setIsPlaying] = useState(false)
   const [currentSong, setCurrentSong] = useState(0)
-  const [progress, setProgress] = useState(0)
+  const [, setProgress] = useState(0)
   const [duration, setDuration] = useState(0)
   const [volume, setVolume] = useState(1)
   const [isLiked, setIsLiked] = useState(false)

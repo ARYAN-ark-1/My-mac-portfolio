@@ -30,9 +30,9 @@ const initialProjects: Project[] = [
 ];
 
 const Projects: React.FC = () => {
-  const [additionalProjects, setAdditionalProjects] = useState<Project[]>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [ ,setAdditionalProjects] = useState<Project[]>([]);
+  const [,setIsLoading] = useState<boolean>(false);
+  const [, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const fetchAdditionalProjects = async () => {
