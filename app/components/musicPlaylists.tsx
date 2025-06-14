@@ -54,7 +54,7 @@ export default function FullScreenMusicPlayer() {
       audioRef.current.load();
       if (isPlaying) audioRef.current.play();
     }
-  }, [currentSong]);
+  }, [currentSong, isPlaying]);
 
   const togglePlay = () => {
     if (audioRef.current) {
@@ -122,8 +122,9 @@ export default function FullScreenMusicPlayer() {
           <img
             src={songs[currentSong].albumArt}
             alt="Album Art"
-            className="w-32 h-32 sm:w-40 sm:h-40 rounded-lg shadow-md"
-          />
+            width={160}
+            height={160}
+            className="rounded-lg shadow-md" />
           <div className="text-center mt-4">
             <h2 className="text-xl sm:text-2xl font-bold">{songs[currentSong].title}</h2>
             <p className="text-gray-300 text-md">{songs[currentSong].artist}</p>
