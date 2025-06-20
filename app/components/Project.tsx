@@ -10,6 +10,12 @@ interface Project {
 
 const initialProjects: Project[] = [
   {
+    title: "ML Visualizer",
+    description: "A visual learning tool for exploring machine learning clustering algorithms like KMeans, DBSCAN, and Hierarchical using interactive Plotly charts.",
+    deployedUrl: "https://ml-visualizer-7.vercel.app/",
+    githubUrl: "https://github.com/aryan-ark-1/ml-visualizer",
+  },
+  {
     title: "Scriptify",
     description: "A web application that generates PDFs from handwritten text inputs and incorporates machine learning for font generation.",
     deployedUrl: "https://aryan-ark-1.github.io/Scriptify/",
@@ -30,8 +36,8 @@ const initialProjects: Project[] = [
 ];
 
 const Projects: React.FC = () => {
-  const [ ,setAdditionalProjects] = useState<Project[]>([]);
-  const [,setIsLoading] = useState<boolean>(false);
+  const [, setAdditionalProjects] = useState<Project[]>([]);
+  const [, setIsLoading] = useState<boolean>(false);
   const [, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -74,15 +80,17 @@ const Projects: React.FC = () => {
           {project.description}
         </p>
         <div className="flex gap-3">
-          <a
-            href={project.deployedUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center px-3 py-1.5 text-sm rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors"
-          >
-            <ExternalLink className="w-4 h-4 mr-1" />
-            <span>View Live</span>
-          </a>
+          {project.deployedUrl && (
+            <a
+              href={project.deployedUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center px-3 py-1.5 text-sm rounded-md bg-blue-600 text-white hover:bg-blue-700 transition-colors"
+            >
+              <ExternalLink className="w-4 h-4 mr-1" />
+              <span>View Live</span>
+            </a>
+          )}
           <a
             href={project.githubUrl}
             target="_blank"
@@ -103,7 +111,6 @@ const Projects: React.FC = () => {
       </h1>
 
       <div className="grid gap-4">{renderProjects(initialProjects)}</div>
-
     </div>
   );
 };
