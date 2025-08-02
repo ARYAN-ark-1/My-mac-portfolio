@@ -16,6 +16,12 @@ const initialProjects: Project[] = [
     githubUrl: "https://github.com/aryan-ark-1/ml-visualizer",
   },
   {
+    title: "Ark Editor",
+    description: "A sleek, minimal code editor built with React and Monaco Editor, ideal for quick editing, compiling, and previewing code snippets in various languages.",
+    deployedUrl: "https://ark-editor.vercel.app/",
+    githubUrl: "https://github.com/ARYAN-ark-1/Ark-editor",
+  },
+  {
     title: "Scriptify",
     description: "A web application that generates PDFs from handwritten text inputs and incorporates machine learning for font generation.",
     deployedUrl: "https://aryan-ark-1.github.io/Scriptify/",
